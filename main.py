@@ -1,8 +1,17 @@
 # Arthur Melquiades de Freitas, Brenno Santiago e Marco Antônio Souza - 3° Periodo - TADS.
 # MOSTRANDO UMA FAKE API COM O TEMA: LOJA DE PESCA.
 
+class Item:
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+    def __str__(self):
+        return f"{self.nome} - R$ {self.preco:.2f}"
+
+
 class Pesca:
-    def __init__(self): 
+    def __init__(self):
         self.items = []
 
     def menu(self):
@@ -26,7 +35,8 @@ class Pesca:
         if preco <= 0:
             print("Preço deve ser maior que zero.")
             return
-        self.items.append({'nome': nome, 'preco': preco})
+        item = Item(nome, preco)
+        self.items.append(item)
         print(f'Produto "{nome}" adicionado!')
 
     def deletar_item(self):
@@ -40,8 +50,8 @@ class Pesca:
             return
         indice = int(indice)
         if 1 <= indice <= len(self.items):
-            item = self.items.pop(indice -1)
-            print(f'Produto "{item["nome"]}" removido.')
+            item = self.items.pop(indice - 1)
+            print(f'Produto "{item.nome}" removido.')
         else:
             print("Número inválido.")
 
@@ -51,15 +61,13 @@ class Pesca:
             return
         print("\nItens cadastrados:")
         for i, item in enumerate(self.items, 1):
-            print(f"{i}. {item['nome']} - R$ {item['preco']:.2f}")
+            print(f"{i}. {item}")
 
     def valor_total(self):
         if len(self.items) == 0:
             print("Nenhum produto cadastrado.")
             return
-        total = 0
-        for item in self.items:
-            total += item['preco']
+        total = sum(item.preco for item in self.items)
         print(f"\nTotal: R$ {total:.2f}")
 
     def numero_valido(self, valor):
@@ -95,6 +103,4 @@ class Pesca:
 
 if __name__ == "__main__":
     Pesca().iniciar()
-
-
-
+    
