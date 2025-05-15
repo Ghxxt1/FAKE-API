@@ -2,7 +2,7 @@
 # MOSTRANDO UMA FAKE API COM O TEMA: LOJA DE PESCA.
 
 class Pesca:
-    def __init__(self):
+    def __init__(self): 
         self.items = []
 
     def menu(self):
