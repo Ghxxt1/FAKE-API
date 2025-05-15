@@ -6,7 +6,7 @@ class Item:
         self.nome = nome
         self.preco = preco
 
-    def __str__(self):
+    def __str__(self):# Retorna de forma legível o item, pois o objeto será impresso.
         return f"{self.nome} - R$ {self.preco:.2f}"
 
 
